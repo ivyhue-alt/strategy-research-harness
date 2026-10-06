@@ -1,0 +1,148 @@
+====================================================================================================
+DATA INVENTORY (volume-usable window is what constrains this study)
+====================================================================================================
+EURUSD.sim   M15  raw  29608 -> vol-usable  29608 bars  2025-05-20..2026-07-29  1.19y  (0% zero dropped)
+EURUSD.sim   M30  raw  14805 -> vol-usable  14805 bars  2025-05-20..2026-07-29  1.19y  (0% zero dropped)
+XAUUSD.sim   M15  raw  50000 -> vol-usable  14348 bars  2025-12-17..2026-07-28  0.61y  (71% zero dropped)
+XAUUSD.sim   M30  raw  50000 -> vol-usable   7175 bars  2025-12-17..2026-07-28  0.61y  (86% zero dropped)
+
+####################################################################################################
+# EURUSD.sim M15   1.19 volume-usable years   424 raw signals
+####################################################################################################
+
+  === Q4-rising(primary) (vratio ge 1.50): 122 signals ===
+
+  -- descriptive (pre-backtest): Q4-rising(primary)  n=119 --
+     median MFE 2.21R   median MAE 2.21R   MFE>MAE in 52% of signals
+     1.5R: target-first 43 (36.1%)  stop-first 71 (59.7%)  timed-out 5 (4.2%)
+     2.0R: target-first 34 (28.6%)  stop-first 76 (63.9%)  timed-out 9 (7.6%)
+     1.5R: trades 119  win 38.7%  ret -14.8%  DD -17.6%  RET/DD 0.72  challenge-pass 0%  gate fail
+        stability: win% 34 -> 43 (n 59/60)
+     2.0R: trades 119  win 33.6%  ret -15.0%  DD -18.2%  RET/DD 0.70  challenge-pass 0%  gate fail
+        stability: win% 32 -> 35 (n 59/60)
+
+  === Q1-quiet(secondary) (vratio le 0.35): 105 signals ===
+
+  -- descriptive (pre-backtest): Q1-quiet(secondary)  n=75 --
+     median MFE 5.28R   median MAE 6.08R   MFE>MAE in 43% of signals
+     1.5R: target-first 26 (34.7%)  stop-first 49 (65.3%)  timed-out 0 (0.0%)
+     2.0R: target-first 23 (30.7%)  stop-first 52 (69.3%)  timed-out 0 (0.0%)
+     1.5R: trades 75  win 34.7%  ret -24.8%  DD -27.7%  RET/DD 0.77  challenge-pass 0%  gate fail
+        stability: win% 38 -> 33 (n 29/46)
+     2.0R: trades 75  win 30.7%  ret -21.8%  DD -26.5%  RET/DD 0.71  challenge-pass 0%  gate fail
+        stability: win% 34 -> 28 (n 29/46)
+
+####################################################################################################
+# EURUSD.sim M30   1.19 volume-usable years   422 raw signals
+####################################################################################################
+
+  === Q4-rising(primary) (vratio ge 1.50): 108 signals ===
+
+  -- descriptive (pre-backtest): Q4-rising(primary)  n=108 --
+     median MFE 1.26R   median MAE 1.82R   MFE>MAE in 44% of signals
+     1.5R: target-first 32 (29.6%)  stop-first 64 (59.3%)  timed-out 12 (11.1%)
+     2.0R: target-first 24 (22.2%)  stop-first 67 (62.0%)  timed-out 17 (15.7%)
+     1.5R: trades 108  win 34.3%  ret -20.1%  DD -22.9%  RET/DD 0.75  challenge-pass 0%  gate fail
+        stability: win% 40 -> 28 (n 55/53)
+     2.0R: trades 108  win 29.6%  ret -21.1%  DD -23.5%  RET/DD 0.77  challenge-pass 0%  gate fail
+        stability: win% 35 -> 25 (n 55/53)
+
+  === Q1-quiet(secondary) (vratio le 0.35): 181 signals ===
+
+  -- descriptive (pre-backtest): Q1-quiet(secondary)  n=149 --
+     median MFE 4.69R   median MAE 5.58R   MFE>MAE in 44% of signals
+     1.5R: target-first 57 (38.3%)  stop-first 91 (61.1%)  timed-out 1 (0.7%)
+     2.0R: target-first 43 (28.9%)  stop-first 104 (69.8%)  timed-out 2 (1.3%)
+     1.5R: trades 149  win 38.9%  ret -28.9%  DD -35.0%  RET/DD 0.71  challenge-pass 0%  gate fail
+        stability: win% 49 -> 29 (n 74/75)
+     2.0R: trades 149  win 30.2%  ret -37.0%  DD -39.4%  RET/DD 0.82  challenge-pass 0%  gate fail
+        stability: win% 36 -> 24 (n 74/75)
+
+####################################################################################################
+# XAUUSD.sim M15   0.61 volume-usable years   208 raw signals   *** THIN ***
+####################################################################################################
+  THIN FLAG: 0.61y of volume history. Reported for completeness;
+  do NOT weigh against the 1.19y EURUSD result.
+
+  === Q4-rising(primary) (vratio ge 1.50): 51 signals ===
+
+  -- descriptive (pre-backtest): Q4-rising(primary)  n=51 --
+     median MFE 2.80R   median MAE 2.40R   MFE>MAE in 51% of signals
+     1.5R: target-first 19 (37.3%)  stop-first 32 (62.7%)  timed-out 0 (0.0%)
+     2.0R: target-first 18 (35.3%)  stop-first 33 (64.7%)  timed-out 0 (0.0%)
+     1.5R: trades 51  win 37.3%  ret -5.6%  DD -12.1%  RET/DD 0.74  challenge-pass 0%  gate fail
+        stability: win% 25 -> 48 (n 24/27)
+     2.0R: trades 51  win 35.3%  ret 0.6%  DD -14.3%  RET/DD 0.07  challenge-pass 0%  gate fail
+        stability: win% 21 -> 48 (n 24/27)
+
+  === Q1-quiet(secondary) (vratio le 0.35): 40 signals ===
+
+  -- descriptive (pre-backtest): Q1-quiet(secondary)  n=40 --
+     median MFE 7.87R   median MAE 6.68R   MFE>MAE in 57% of signals
+     1.5R: target-first 17 (42.5%)  stop-first 23 (57.5%)  timed-out 0 (0.0%)
+     2.0R: target-first 15 (37.5%)  stop-first 25 (62.5%)  timed-out 0 (0.0%)
+     1.5R: trades 40  win 42.5%  ret -2.0%  DD -8.7%  RET/DD 0.38  challenge-pass 0%  gate fail
+        stability: win% 47 -> 39 (n 17/23)
+     2.0R: trades 40  win 37.5%  ret 0.4%  DD -8.9%  RET/DD 0.07  challenge-pass 0%  gate fail
+        stability: win% 47 -> 30 (n 17/23)
+
+####################################################################################################
+# XAUUSD.sim M30   0.61 volume-usable years   207 raw signals   *** THIN ***
+####################################################################################################
+  THIN FLAG: 0.61y of volume history. Reported for completeness;
+  do NOT weigh against the 1.19y EURUSD result.
+
+  === Q4-rising(primary) (vratio ge 1.50): 25 signals ===
+
+  -- descriptive (pre-backtest): Q4-rising(primary)  n=25 --
+     median MFE 0.95R   median MAE 2.18R   MFE>MAE in 28% of signals
+     1.5R: target-first 5 (20.0%)  stop-first 19 (76.0%)  timed-out 1 (4.0%)
+     2.0R: target-first 4 (16.0%)  stop-first 20 (80.0%)  timed-out 1 (4.0%)
+     1.5R: trades 25  win 20.0%  ret -11.5%  DD -12.3%  RET/DD 1.47  challenge-pass 0%  gate fail
+        stability: win% 18 -> 21 (n 11/14)
+     2.0R: trades 25  win 16.0%  ret -11.9%  DD -13.6%  RET/DD 1.38  challenge-pass 0%  gate fail
+        stability: win% 18 -> 14 (n 11/14)
+
+  === Q1-quiet(secondary) (vratio le 0.35): 51 signals ===
+
+  -- descriptive (pre-backtest): Q1-quiet(secondary)  n=49 --
+     median MFE 5.00R   median MAE 3.49R   MFE>MAE in 49% of signals
+     1.5R: target-first 21 (42.9%)  stop-first 28 (57.1%)  timed-out 0 (0.0%)
+     2.0R: target-first 19 (38.8%)  stop-first 30 (61.2%)  timed-out 0 (0.0%)
+     1.5R: trades 49  win 42.9%  ret 0.0%  DD -10.1%  RET/DD 0.01  challenge-pass 0%  gate fail
+        stability: win% 41 -> 44 (n 22/27)
+     2.0R: trades 49  win 38.8%  ret 4.5%  DD -10.6%  RET/DD 0.70  challenge-pass 0%  gate fail
+        stability: win% 36 -> 41 (n 22/27)
+
+====================================================================================================
+SPREAD SENSITIVITY on the best PRIMARY cell: EURUSD.sim M30 Q1-quiet(secondary) 2.0R
+====================================================================================================
+  half-spread x0.5 (0.0020%): win 32.7%  ret -24.1%  DD -36.7%  RET/DD 0.57  fail
+  half-spread x1.0 (0.0040%): win 30.2%  ret -37.0%  DD -39.4%  RET/DD 0.82  fail
+  half-spread x2.0 (0.0080%): win 28.7%  ret -42.7%  DD -44.0%  RET/DD 0.85  fail
+
+====================================================================================================
+GATE: win rate > 50%  AND  RETURN/DD > 1.5  AND  max DD < 10%
+====================================================================================================
+cell                                            trades    win%     ret%   maxDD%  RET/DD   GATE
+EURUSD.sim M15 Q4-rising(primary) 1.5R             119   38.7%   -14.8%   -17.6%    0.72   fail
+EURUSD.sim M15 Q4-rising(primary) 2.0R             119   33.6%   -15.0%   -18.2%    0.70   fail
+EURUSD.sim M15 Q1-quiet(secondary) 1.5R             75   34.7%   -24.8%   -27.7%    0.77   fail
+EURUSD.sim M15 Q1-quiet(secondary) 2.0R             75   30.7%   -21.8%   -26.5%    0.71   fail
+EURUSD.sim M30 Q4-rising(primary) 1.5R             108   34.3%   -20.1%   -22.9%    0.75   fail
+EURUSD.sim M30 Q4-rising(primary) 2.0R             108   29.6%   -21.1%   -23.5%    0.77   fail
+EURUSD.sim M30 Q1-quiet(secondary) 1.5R            149   38.9%   -28.9%   -35.0%    0.71   fail
+EURUSD.sim M30 Q1-quiet(secondary) 2.0R            149   30.2%   -37.0%   -39.4%    0.82   fail
+XAUUSD.sim M15 Q4-rising(primary) 1.5R              51   37.3%    -5.6%   -12.1%    0.74   fail  [THIN]
+XAUUSD.sim M15 Q4-rising(primary) 2.0R              51   35.3%     0.6%   -14.3%    0.07   fail  [THIN]
+XAUUSD.sim M15 Q1-quiet(secondary) 1.5R             40   42.5%    -2.0%    -8.7%    0.38   fail  [THIN]
+XAUUSD.sim M15 Q1-quiet(secondary) 2.0R             40   37.5%     0.4%    -8.9%    0.07   fail  [THIN]
+XAUUSD.sim M30 Q4-rising(primary) 1.5R              25   20.0%   -11.5%   -12.3%    1.47   fail  [THIN]
+XAUUSD.sim M30 Q4-rising(primary) 2.0R              25   16.0%   -11.9%   -13.6%    1.38   fail  [THIN]
+XAUUSD.sim M30 Q1-quiet(secondary) 1.5R             49   42.9%     0.0%   -10.1%    0.01   fail  [THIN]
+XAUUSD.sim M30 Q1-quiet(secondary) 2.0R             49   38.8%     4.5%   -10.6%    0.70   fail  [THIN]
+
+PRIMARY (EURUSD) cells passing all three gate conditions: 0 of 8
+Cells tested: 16. At 5% each, ~0.8 would clear a p<0.05 bar by chance;
+the gate is stricter than that, but treat a single passing cell among
+many as weak evidence, not a result.

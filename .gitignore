@@ -1,0 +1,25 @@
+# secrets
+.env
+.env.*
+*.key
+*.pem
+
+# logs and runtime state
+logs/
+*.log
+bot_state.json
+state.json
+*.xml
+
+# python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# raw data files (over 1 MB each; source documented in README)
+research/data/*.csv
+research/data/
+research/equity_curves/portfolio_equity_*_MAX_OPEN*.csv
+research/equity_curves/portfolio_equity_*_limit_at_level.csv
+research/equity_curves/portfolio_equity_*_market_close.csv

@@ -1,0 +1,445 @@
+coint_research.py:153: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"a": s1, "b": s2}, axis=1).dropna()
+coint_research.py:153: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"a": s1, "b": s2}, axis=1).dropna()
+coint_research.py:153: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"a": s1, "b": s2}, axis=1).dropna()
+VALIDATION (run separately, recorded here so the numbers are auditable):
+  ADF: stationary AR(0.95) t=-8.32 ; pure random walk t=-1.55  -> separates correctly
+  MC EG null quantiles vs published asymptotics (-3.90/-3.34/-3.04):
+     T=500  -3.90/-3.33/-3.04    T=1000 -3.89/-3.35/-3.03    T=2500 -3.89/-3.34/-3.07
+  half-life estimator over 300 reps: bias -7%% to +3%% across phi 0.90-0.995,
+     but HIGH VARIANCE near the unit root (a single window can be off ~50%%),
+     which is why medians across windows are reported rather than single windows.
+
+attached: login <redacted>  OANDA-Demo-1
+
+half-spreads from symbol_info last-known bid/ask (CLOSED-MARKET snapshot):
+   US100.sim    0.640 bps
+   US30.sim     0.386 bps
+   US500.sim    0.476 bps
+   XAGUSD.sim   2.925 bps
+   XAUUSD.sim   0.540 bps
+   -> silver is the outlier and will dominate the metals pair's cost
+
+====================================================================================================
+XAUUSD / XAGUSD  M30
+====================================================================================================
+  aligned bars 49896   2022-05-06 -> 2026-07-30   4.23y   ~46 bars/day
+  half-spreads: leg1 0.54 bps   leg2 2.93 bps
+
+  --- 60d window (2760 bars, step 460 bars): 103 windows ---
+      MC null quantiles 1/5/10%: -3.88 / -3.31 / -3.03   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -1.97   min -3.98   max 0.50
+      p-value   : median 0.534   frac p<0.05 7.8%   frac p<0.10 16.5%
+      hedge beta: median 0.398   IQR 0.274..0.525   sign-stable 98%
+      half-life : median 239.8 bars  (~125.1 h, ~5.21 days)
+      spread vol: median 138.9 bps   -> 2-sigma 277.9 bps
+      COST      : two-leg round trip 3.4 bps = 1.2% of the 2-sigma move
+                  break-even: spreads must be 16.30x current for cost to reach 20% of 2-sigma
+      per-window detail (every 12-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2022-05-06      0.463    -2.76    0.172      71.1        96       2.7
+        2022-10-24      0.525    -0.40    0.975     157.4      1184       1.3
+        2023-04-14      0.400    -2.43    0.296      84.0       165       2.0
+        2023-09-29      0.678    -3.98    0.007     135.9       116       1.9
+        2024-03-20      0.295    -2.30    0.355     160.7       250       0.9
+        2024-09-05      0.525    -1.93    0.555     102.3       203       2.0
+        2025-02-25      0.317    -0.89    0.920     517.8      1346       0.3
+        2025-08-13      0.705    -2.73    0.184     136.7        93       1.9
+        2026-02-03      0.584    -3.42    0.036     188.9        79       1.2
+
+  --- 120d window (5520 bars, step 460 bars): 97 windows ---
+      MC null quantiles 1/5/10%: -3.90 / -3.37 / -3.07   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -1.49   min -3.87   max 0.29
+      p-value   : median 0.774   frac p<0.05 2.1%   frac p<0.10 2.1%
+      hedge beta: median 0.478   IQR 0.378..0.586   sign-stable 100%
+      half-life : median 715.2 bars  (~373.2 h, ~15.55 days)
+      spread vol: median 256.2 bps   -> 2-sigma 512.4 bps
+      COST      : two-leg round trip 3.9 bps = 0.8% of the 2-sigma move
+                  break-even: spreads must be 26.45x current for cost to reach 20% of 2-sigma
+      per-window detail (every 12-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2022-05-06      0.538    -0.98    0.909     200.5       957       1.1
+        2022-10-24      0.571    -0.98    0.909     355.8      1788       0.6
+        2023-04-14      0.403    -1.73    0.668     108.4       478       1.6
+        2023-09-29      0.687    -2.94    0.130     248.0       439       1.0
+        2024-03-20      0.290    -0.94    0.917     284.2      1663       0.5
+        2024-09-05      0.586    -0.28    0.978     279.9      3676       0.8
+        2025-02-25      0.455    -1.78    0.644     401.7       848       0.5
+        2025-08-13      0.354    -2.01    0.529     342.1       506       0.5
+        2026-02-03      0.589    -2.53    0.271     281.7       262       0.8
+
+====================================================================================================
+US30 / US500  M30
+====================================================================================================
+  aligned bars 49990   2022-05-02 -> 2026-07-30   4.24y   ~46 bars/day
+  half-spreads: leg1 0.39 bps   leg2 0.48 bps
+
+  --- 60d window (2760 bars, step 460 bars): 103 windows ---
+      MC null quantiles 1/5/10%: -3.88 / -3.31 / -3.03   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -2.07   min -4.38   max 2.27
+      p-value   : median 0.479   frac p<0.05 7.8%   frac p<0.10 11.7%
+      hedge beta: median 0.823   IQR 0.676..0.952   sign-stable 100%
+      half-life : median 241.9 bars  (~126.2 h, ~5.26 days)
+      spread vol: median 81.5 bps   -> 2-sigma 163.1 bps
+      COST      : two-leg round trip 1.6 bps = 1.0% of the 2-sigma move
+                  break-even: spreads must be 20.95x current for cost to reach 20% of 2-sigma
+      per-window detail (every 12-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2022-05-02      0.824    -4.38    0.001      28.4        31       2.7
+        2022-10-18      1.034    -2.71    0.189     132.3       270       0.7
+        2023-04-07      0.253    -2.06    0.486      95.2       233       0.5
+        2023-09-25      1.008    -1.63    0.709      74.9       352       1.2
+        2024-03-14      0.653    -0.85    0.927     110.7       976       0.6
+        2024-09-02      0.893    -2.32    0.346      52.5       117       1.5
+        2025-02-20      0.792    -1.69    0.679     101.5       327       0.8
+        2025-08-11      0.813    -3.83    0.012      46.5        82       1.7
+        2026-02-02      0.942    -0.30    0.979     137.3      1927       0.6
+
+  --- 120d window (5520 bars, step 460 bars): 97 windows ---
+      MC null quantiles 1/5/10%: -3.90 / -3.37 / -3.07   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -2.05   min -4.13   max 1.17
+      p-value   : median 0.508   frac p<0.05 4.1%   frac p<0.10 13.4%
+      hedge beta: median 0.798   IQR 0.611..0.914   sign-stable 100%
+      half-life : median 414.5 bars  (~216.3 h, ~9.01 days)
+      spread vol: median 115.8 bps   -> 2-sigma 231.6 bps
+      COST      : two-leg round trip 1.5 bps = 0.6% of the 2-sigma move
+                  break-even: spreads must be 30.22x current for cost to reach 20% of 2-sigma
+      per-window detail (every 12-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2022-05-02      0.858    -1.95    0.558      68.8       277       1.2
+        2022-10-18      0.665    -2.16    0.455     181.4       725       0.4
+        2023-04-07      0.490    -2.03    0.520     103.3       471       0.6
+        2023-09-25      0.910    -1.01    0.903     108.8      1198       0.8
+        2024-03-14      0.516    -1.39    0.804     145.5       735       0.4
+        2024-09-02      0.893    -2.12    0.475      98.2       369       0.8
+        2025-02-20      0.651    -2.87    0.152     110.8       273       0.6
+        2025-08-11      1.107    -3.21    0.071      86.7       208       1.1
+        2026-02-02      0.724    -1.48    0.777     169.6       769       0.4
+
+====================================================================================================
+US500 / US100  M30
+====================================================================================================
+  aligned bars 49932   2022-05-03 -> 2026-07-30   4.24y   ~46 bars/day
+  half-spreads: leg1 0.48 bps   leg2 0.64 bps
+
+  --- 60d window (2760 bars, step 460 bars): 103 windows ---
+      MC null quantiles 1/5/10%: -3.88 / -3.31 / -3.03   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -2.03   min -4.67   max 0.51
+      p-value   : median 0.502   frac p<0.05 5.8%   frac p<0.10 6.8%
+      hedge beta: median 0.737   IQR 0.610..0.814   sign-stable 100%coint_research.py:153: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"a": s1, "b": s2}, axis=1).dropna()
+coint_research.py:153: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"a": s1, "b": s2}, axis=1).dropna()
+
+      half-life : median 214.3 bars  (~111.8 h, ~4.66 days)
+      spread vol: median 67.9 bps   -> 2-sigma 135.8 bps
+      COST      : two-leg round trip 1.9 bps = 1.4% of the 2-sigma move
+                  break-even: spreads must be 14.33x current for cost to reach 20% of 2-sigma
+      per-window detail (every 12-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2022-05-03      0.868    -1.94    0.552      99.9       221       1.0
+        2022-10-20      0.658    -2.68    0.198     126.9       295       0.7
+        2023-04-11      0.436    -1.47    0.778      84.6       383       0.9
+        2023-09-26      0.824    -3.36    0.041      45.3       115       2.2
+        2024-03-15      0.708    -2.15    0.438      40.4       181       2.3
+        2024-09-03      0.785    -2.84    0.152      37.2        89       2.6
+        2025-02-21      0.798    -1.86    0.593      73.4       219       1.3
+        2025-08-12      0.649    -3.22    0.062      35.2       107       2.5
+        2026-02-03      0.725    -0.86    0.924      92.0       658       1.0
+
+  --- 120d window (5520 bars, step 460 bars): 97 windows ---
+      MC null quantiles 1/5/10%: -3.90 / -3.37 / -3.07   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -2.09   min -3.42   max -0.18
+      p-value   : median 0.490   frac p<0.05 1.0%   frac p<0.10 2.1%
+      hedge beta: median 0.739   IQR 0.629..0.790   sign-stable 100%
+      half-life : median 413.1 bars  (~215.5 h, ~8.98 days)
+      spread vol: median 92.2 bps   -> 2-sigma 184.5 bps
+      COST      : two-leg round trip 1.9 bps = 1.0% of the 2-sigma move
+                  break-even: spreads must be 19.43x current for cost to reach 20% of 2-sigma
+      per-window detail (every 12-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2022-05-03      0.793    -2.27    0.393      93.0       313       1.1
+        2022-10-20      0.415    -3.06    0.101     158.4       299       0.5
+        2023-04-11      0.549    -1.70    0.682      92.2       565       0.9
+        2023-09-26      0.864    -2.61    0.238      60.7       255       1.7
+        2024-03-15      0.707    -0.34    0.974     103.7      3102       0.9
+        2024-09-03      0.662    -2.07    0.497      71.2       385       1.3
+        2025-02-21      0.737    -2.64    0.226      69.9       246       1.4
+        2025-08-12      0.759    -2.23    0.419      60.4       373       1.6
+        2026-02-03      0.564    -1.95    0.558      94.0       407       0.9
+
+====================================================================================================
+US30 / US100  M30
+====================================================================================================
+  aligned bars 49935   2022-05-03 -> 2026-07-30   4.24y   ~46 bars/day
+  half-spreads: leg1 0.39 bps   leg2 0.64 bps
+
+  --- 60d window (2760 bars, step 460 bars): 103 windows ---
+      MC null quantiles 1/5/10%: -3.88 / -3.31 / -3.03   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -2.01   min -4.60   max 1.92
+      p-value   : median 0.512   frac p<0.05 4.9%   frac p<0.10 10.7%
+      hedge beta: median 0.541   IQR 0.368..0.658   sign-stable 97%
+      half-life : median 257.9 bars  (~134.6 h, ~5.61 days)
+      spread vol: median 118.5 bps   -> 2-sigma 237.0 bps
+      COST      : two-leg round trip 1.5 bps = 0.6% of the 2-sigma move
+                  break-even: spreads must be 32.36x current for cost to reach 20% of 2-sigma
+      per-window detail (every 12-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2022-05-03      0.711    -2.94    0.123      94.5        90       0.9
+        2022-10-19      0.470    -3.47    0.032     227.3       283       0.3
+        2023-04-11      0.066    -1.99    0.522     113.1       236       0.4
+        2023-09-26      0.824    -2.19    0.416     110.0       232       0.8
+        2024-03-15      0.365    -1.16    0.866     133.3       587       0.5
+        2024-09-03      0.698    -2.05    0.493      84.6       137       1.0
+        2025-02-21      0.601    -1.81    0.622     154.2       277       0.5
+        2025-08-12      0.508    -4.60    0.000      58.3        59       1.2
+        2026-02-03      0.541    -0.90    0.918     215.3       759       0.3
+
+  --- 120d window (5520 bars, step 460 bars): 97 windows ---
+      MC null quantiles 1/5/10%: -3.90 / -3.37 / -3.07   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -2.12   min -3.62   max 0.72
+      p-value   : median 0.478   frac p<0.05 6.2%   frac p<0.10 10.3%
+      hedge beta: median 0.520   IQR 0.296..0.639   sign-stable 100%
+      half-life : median 414.0 bars  (~216.0 h, ~9.00 days)
+      spread vol: median 163.5 bps   -> 2-sigma 327.1 bps
+      COST      : two-leg round trip 1.4 bps = 0.4% of the 2-sigma move
+                  break-even: spreads must be 45.49x current for cost to reach 20% of 2-sigma
+      per-window detail (every 12-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2022-05-03      0.668    -2.29    0.384     123.8       253       0.7
+        2022-10-19      0.077    -3.58    0.027     241.1       256       0.2
+        2023-04-11      0.234    -1.95    0.558     142.6       481       0.4
+        2023-09-26      0.783    -2.65    0.221     119.4       292       0.7
+        2024-03-15      0.294    -1.05    0.893     190.2       994       0.3
+        2024-09-03      0.541    -1.92    0.577     152.5       453       0.5
+        2025-02-21      0.461    -2.69    0.206     150.9       277       0.5
+        2025-08-12      0.786    -2.59    0.242     143.5       309       0.6
+        2026-02-03      0.391    -1.62    0.718     212.4       611       0.3
+
+====================================================================================================
+XAUUSD / XAGUSD  H1
+====================================================================================================
+  aligned bars 49474   2018-02-13 -> 2026-07-30   8.45y   ~23 bars/day
+  half-spreads: leg1 0.54 bps   leg2 2.93 bps
+
+  --- 60d window (1380 bars, step 230 bars): 210 windows ---
+      MC null quantiles 1/5/10%: -3.99 / -3.37 / -3.09   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -2.01   min -4.35   max 2.61
+      p-value   : median 0.523   frac p<0.05 3.8%   frac p<0.10 10.0%
+      hedge beta: median 0.413   IQR 0.276..0.576   sign-stable 98%
+      half-life : median 115.7 bars  (~120.7 h, ~5.03 days)
+      spread vol: median 124.3 bps   -> 2-sigma 248.7 bps
+      COST      : two-leg round trip 3.5 bps = 1.4% of the 2-sigma move
+                  break-even: spreads must be 14.23x current for cost to reach 20% of 2-sigma
+      per-window detail (every 26-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2018-02-13      0.543    -1.76    0.655      71.1       117       3.0
+        2019-02-19      0.554    -1.86    0.605      50.3        77       4.3
+        2020-02-24      0.250    -1.41    0.797     340.5       196       0.4
+        2021-02-26      0.843    -1.98    0.542     174.6       105       1.7
+        2022-03-31      0.401    -3.94    0.011      51.0        26       3.4
+        2023-04-05      0.383    -2.43    0.320      81.8        83       2.0
+        2024-04-10      0.127    -2.65    0.219     115.8        65       0.8
+        2025-04-14      0.177    -3.27    0.064     149.8        53       0.7
+        2026-04-21      0.461    -2.37    0.343     164.9       105       1.1
+
+  --- 120d window (2760 bars, step 230 bars): 204 windows ---
+      MC null quantiles 1/5/10%: -3.88 / -3.31 / -3.03   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -1.65   min -4.31   max 2.80
+      p-value   : median 0.695   frac p<0.05 3.4%   frac p<0.10 3.9%
+      hedge beta: median 0.449   IQR 0.320..0.587   sign-stable 97%
+      half-life : median 310.4 bars  (~323.9 h, ~13.50 days)
+      spread vol: median 221.4 bps   -> 2-sigma 442.7 bpscoint_research.py:153: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"a": s1, "b": s2}, axis=1).dropna()
+coint_research.py:153: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"a": s1, "b": s2}, axis=1).dropna()
+coint_research.py:153: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"a": s1, "b": s2}, axis=1).dropna()
+
+      COST      : two-leg round trip 3.7 bps = 0.9% of the 2-sigma move
+                  break-even: spreads must be 23.90x current for cost to reach 20% of 2-sigma
+      per-window detail (every 25-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2018-02-13      1.014    -2.17    0.428     157.4       182       2.2
+        2019-02-04      0.586    -1.00    0.901     309.9      1188       0.7
+        2020-01-27      0.201    -1.61    0.714     425.2       416       0.3
+        2021-01-15      0.510    -1.93    0.556     247.8       322       0.8
+        2022-02-03      0.403    -3.56    0.025     111.1        82       1.5
+        2023-01-25      0.473    -2.22    0.403     128.1       187       1.5
+        2024-01-16      0.524    -1.50    0.767     205.1       360       1.0
+        2025-01-03      1.103    -1.52    0.756     531.7       383       0.7
+        2025-12-26      0.384    -1.52    0.757     417.3       366       0.4
+
+====================================================================================================
+US30 / US500  H1
+====================================================================================================
+  aligned bars 49983   2018-02-14 -> 2026-07-30   8.45y   ~23 bars/day
+  half-spreads: leg1 0.39 bps   leg2 0.48 bps
+
+  --- 60d window (1380 bars, step 230 bars): 212 windows ---
+      MC null quantiles 1/5/10%: -3.99 / -3.37 / -3.09   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -2.09   min -4.49   max 2.62
+      p-value   : median 0.478   frac p<0.05 9.0%   frac p<0.10 12.3%
+      hedge beta: median 0.837   IQR 0.728..1.007   sign-stable 100%
+      half-life : median 102.9 bars  (~107.3 h, ~4.47 days)
+      spread vol: median 74.7 bps   -> 2-sigma 149.4 bps
+      COST      : two-leg round trip 1.6 bps = 1.1% of the 2-sigma move
+                  break-even: spreads must be 19.04x current for cost to reach 20% of 2-sigma
+      per-window detail (every 26-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2018-02-14      1.009    -2.12    0.462      61.9        73       1.4
+        2019-02-14      0.534    -1.80    0.629      65.2        63       1.0
+        2020-02-19      1.059    -0.81    0.929     137.0       168       0.7
+        2021-02-15      0.961    -2.31    0.369     112.6       163       0.7
+        2022-02-22      0.682    -2.20    0.420      72.6        77       1.0
+        2023-03-02      0.798    -0.04    0.988      86.8       763       0.9
+        2024-03-06      0.791     0.19    0.993      84.5         -       0.9
+        2025-03-12      0.667    -2.22    0.412     105.6       107       0.7
+        2026-03-20      0.649    -2.38    0.341      77.6        88       0.9
+
+  --- 120d window (2760 bars, step 230 bars): 206 windows ---
+      MC null quantiles 1/5/10%: -3.88 / -3.31 / -3.03   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -2.30   min -3.73   max 2.21
+      p-value   : median 0.353   frac p<0.05 8.3%   frac p<0.10 14.6%
+      hedge beta: median 0.830   IQR 0.713..0.946   sign-stable 100%
+      half-life : median 164.9 bars  (~172.0 h, ~7.17 days)
+      spread vol: median 94.8 bps   -> 2-sigma 189.5 bps
+      COST      : two-leg round trip 1.6 bps = 0.8% of the 2-sigma move
+                  break-even: spreads must be 24.25x current for cost to reach 20% of 2-sigma
+      per-window detail (every 25-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2018-02-14      0.744    -2.58    0.238      94.0       121       0.8
+        2019-02-01      0.722    -1.51    0.761      85.4       219       0.9
+        2020-01-22      1.077    -1.11    0.880     178.4       372       0.5
+        2021-01-04      1.023    -1.54    0.746     119.8       432       0.7
+        2021-12-27      0.735    -2.89    0.138      69.4        90       1.1
+        2022-12-20      0.290    -2.22    0.404     152.3       185       0.3
+        2023-12-11      0.482    -1.59    0.724      86.8       234       0.7
+        2024-11-29      0.829    -2.01    0.514     115.2       220       0.7
+        2025-11-24      0.666    -1.96    0.540     141.3       284       0.5
+
+====================================================================================================
+US500 / US100  H1
+====================================================================================================
+  aligned bars 43919   2018-02-14 -> 2026-07-30   8.45y   ~23 bars/day
+  half-spreads: leg1 0.48 bps   leg2 0.64 bps
+
+  --- 60d window (1380 bars, step 230 bars): 185 windows ---
+      MC null quantiles 1/5/10%: -3.99 / -3.37 / -3.09   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -2.14   min -5.12   max 0.17
+      p-value   : median 0.451   frac p<0.05 6.5%   frac p<0.10 11.4%
+      hedge beta: median 0.713   IQR 0.588..0.798   sign-stable 100%
+      half-life : median 94.5 bars  (~98.6 h, ~4.11 days)
+      spread vol: median 64.4 bps   -> 2-sigma 128.8 bps
+      COST      : two-leg round trip 1.9 bps = 1.4% of the 2-sigma move
+                  break-even: spreads must be 13.81x current for cost to reach 20% of 2-sigma
+      per-window detail (every 23-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2018-02-14      0.682    -2.45    0.302      63.7        54       1.4
+        2019-01-04      0.812    -1.38    0.808      61.7        67       1.6
+        2019-11-22      0.429    -2.41    0.327      74.5        77       1.0
+        2021-10-21      0.529    -1.05    0.892     102.3       270       0.8
+        2022-09-16      0.980    -1.29    0.834     203.8       357       0.5
+        2023-08-10      0.974    -1.83    0.619      91.7       146       1.2
+        2024-07-03      0.540    -1.25    0.844     123.4       357       0.7
+        2025-05-28      0.846    -2.74    0.189      27.9        44       3.7
+        2026-04-23      0.494    -1.16    0.868      57.7       175       1.4
+
+  --- 120d window (2760 bars, step 230 bars): 179 windows ---
+      MC null quantiles 1/5/10%: -3.88 / -3.31 / -3.03   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -2.27   min -3.76   max -0.31
+      p-value   : median 0.375   frac p<0.05 5.0%   frac p<0.10 10.6%
+      hedge beta: median 0.722   IQR 0.599..0.780   sign-stable 100%
+      half-life : median 180.5 bars  (~188.3 h, ~7.85 days)
+      spread vol: median 92.1 bps   -> 2-sigma 184.1 bps
+      COST      : two-leg round trip 1.9 bps = 1.0% of the 2-sigma move
+                  break-even: spreads must be 19.62x current for cost to reach 20% of 2-sigma
+      per-window detail (every 22-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2018-02-14      0.540    -3.27    0.055      68.2        66       1.2
+        2018-12-19      0.759    -2.02    0.506      73.5       100       1.3
+        2019-10-25      0.483    -1.03    0.896     170.5       496       0.5
+        2021-09-09      0.576    -2.02    0.512     134.4       257       0.6
+        2022-07-22      0.584    -0.97    0.906     202.2       681       0.4
+        2023-05-31      0.876    -1.79    0.632      93.4       230       1.1
+        2024-04-10      0.737    -0.74    0.942     141.7      1141       0.7
+        2025-02-18      0.738    -2.54    0.255      70.0       128       1.4
+        2025-12-30      0.560    -2.10    0.461      83.7       180       1.0
+
+====================================================================================================
+US30 / US100  H1
+====================================================================================================
+  aligned bars 43907   2018-02-14 -> 2026-07-30   8.45y   ~23 bars/day
+  half-spreads: leg1 0.39 bps   leg2 0.64 bps
+
+  --- 60d window (1380 bars, step 230 bars): 185 windows ---
+      MC null quantiles 1/5/10%: -3.99 / -3.37 / -3.09   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -2.14   min -4.38   max 1.73
+      p-value   : median 0.451   frac p<0.05 4.9%   frac p<0.10 8.1%
+      hedge beta: median 0.536   IQR 0.346..0.658   sign-stable 98%
+      half-life : median 102.5 bars  (~106.9 h, ~4.46 days)
+      spread vol: median 111.3 bps   -> 2-sigma 222.7 bps
+      COST      : two-leg round trip 1.5 bps = 0.6% of the 2-sigma move
+                  break-even: spreads must be 30.54x current for cost to reach 20% of 2-sigma
+      per-window detail (every 23-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2018-02-14      0.634    -2.28    0.385     114.2        68       0.7
+        2019-01-04      0.720    -1.26    0.842     122.9       116       0.7
+        2019-11-22      0.218    -2.53    0.269      91.5        74       0.6
+        2021-10-21      0.186    -1.81    0.627     141.7       130       0.4
+        2022-09-19      1.073    -1.37    0.811     473.6       395       0.2
+        2023-08-10      0.712    -2.14    0.451     130.3       136       0.6
+        2024-07-04      0.194    -1.49    0.767     203.0       232       0.3
+        2025-05-28      0.636    -2.13    0.457      87.8       101       0.9
+        2026-04-23      0.486    -1.00    0.900     186.4       422       0.4
+
+  --- 120d window (2760 bars, step 230 bars): 179 windows ---
+      MC null quantiles 1/5/10%: -3.88 / -3.31 / -3.03   (published asymptotic -3.90 / -3.34 / -3.04)
+      EG stat   : median -2.34   min -3.98   max 0.35
+      p-value   : median 0.335   frac p<0.05 8.4%   frac p<0.10 11.2%
+      hedge beta: median 0.500   IQR 0.338..0.644   sign-stable 100%
+      half-life : median 165.5 bars  (~172.6 h, ~7.19 days)
+      spread vol: median 141.9 bps   -> 2-sigma 283.8 bps
+      COST      : two-leg round trip 1.4 bps = 0.5% of the 2-sigma move
+                  break-even: spreads must be 40.17x current for cost to reach 20% of 2-sigma
+      per-window detail (every 22-th window):
+        window start     beta     EG t        p   vol bps   HL bars cost%2sig
+        2018-02-14      0.338    -3.03    0.099     135.4        85       0.4
+        2018-12-20      0.618    -1.93    0.558     141.9       144       0.6
+        2019-10-28      0.292    -0.98    0.903     252.4       628       0.2
+        2021-09-09      0.377    -2.75    0.180     139.7       127       0.4
+        2022-07-22      0.233    -0.71    0.946     447.4      1181       0.1
+        2023-06-01      0.656    -2.31    0.350     122.8       171       0.7
+        2024-04-10      0.371    -0.92    0.914     237.0       709       0.3
+        2025-02-18      0.473    -2.71    0.190     152.9       137       0.5
+        2025-12-30      0.310    -2.08    0.475     185.0       222       0.3
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+pair/tf                     win   hold@5%  hold@10%     EG t  HL bars   vol bps  cost %2sig
+XAUUSD / XAGUSD  M30         60d      7.8%     16.5%    -1.97      240     138.9        1.2%
+XAUUSD / XAGUSD  M30        120d      2.1%      2.1%    -1.49      715     256.2        0.8%
+US30 / US500  M30            60d      7.8%     11.7%    -2.07      242      81.5        1.0%
+US30 / US500  M30           120d      4.1%     13.4%    -2.05      414     115.8        0.6%
+US500 / US100  M30           60d      5.8%      6.8%    -2.03      214      67.9        1.4%
+US500 / US100  M30          120d      1.0%      2.1%    -2.09      413      92.2        1.0%
+US30 / US100  M30            60d      4.9%     10.7%    -2.01      258     118.5        0.6%
+US30 / US100  M30           120d      6.2%     10.3%    -2.12      414     163.5        0.4%
+XAUUSD / XAGUSD  H1          60d      3.8%     10.0%    -2.01      116     124.3        1.4%
+XAUUSD / XAGUSD  H1         120d      3.4%      3.9%    -1.65      310     221.4        0.9%
+US30 / US500  H1             60d      9.0%     12.3%    -2.09      103      74.7        1.1%
+US30 / US500  H1            120d      8.3%     14.6%    -2.30      165      94.8        0.8%
+US500 / US100  H1            60d      6.5%     11.4%    -2.14       94      64.4        1.4%
+US500 / US100  H1           120d      5.0%     10.6%    -2.27      180      92.1        1.0%
+US30 / US100  H1             60d      4.9%      8.1%    -2.14      102     111.3        0.6%
+US30 / US100  H1            120d      8.4%     11.2%    -2.34      165     141.9        0.5%
+
+REMINDERS
+ * 'hold' fractions come from HEAVILY OVERLAPPING windows - a share of
+   calendar time, not independent confirmations.
+ * cost uses a closed-market spread snapshot and no per-bar spread
+   history exists, so it is a rough LOWER bound on live cost.
+ * descriptive only: no entries, no exits, no backtest, no P&L.

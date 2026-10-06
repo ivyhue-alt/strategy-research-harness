@@ -1,0 +1,75 @@
+avellaneda_lee.py:144: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"ah": a_df["high"], "al": a_df["low"], "ac": a_df["close"],
+avellaneda_lee.py:144: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"ah": a_df["high"], "al": a_df["low"], "ac": a_df["close"],
+avellaneda_lee.py:144: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"ah": a_df["high"], "al": a_df["low"], "ac": a_df["close"],
+avellaneda_lee.py:144: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"ah": a_df["high"], "al": a_df["low"], "ac": a_df["close"],
+avellaneda_lee.py:144: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"ah": a_df["high"], "al": a_df["low"], "ac": a_df["close"],
+avellaneda_lee.py:144: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"ah": a_df["high"], "al": a_df["low"], "ac": a_df["close"],
+avellaneda_lee.py:144: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"ah": a_df["high"], "al": a_df["low"], "ac": a_df["close"],
+avellaneda_lee.py:144: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df = pd.concat({"ah": a_df["high"], "al": a_df["low"], "ac": a_df["close"],
+half-spreads (symbol_info last-known bid/ask, closed-market snapshot):
+   US100.sim    0.601 bps
+   US30.sim     0.387 bps
+   US500.sim    0.340 bps
+   XAGUSD.sim   2.851 bps
+   XAUUSD.sim   0.651 bps
+  done XAUUSD/XAGUSD D1       trades  124  win   9.7%  stationary  6.5%
+  done US30/US500 D1          trades  124  win   1.6%  stationary  4.1%
+  done US500/US100 D1         trades   69  win   2.9%  stationary  5.8%
+  done US30/US100 D1          trades   61  win  11.5%  stationary  4.3%
+  done XAUUSD/XAGUSD H1       trades  251  win  20.7%  stationary  7.3%
+  done US30/US500 H1          trades  388  win   8.8%  stationary  6.3%
+  done US500/US100 H1         trades  389  win  10.8%  stationary  6.0%
+  done US30/US100 H1          trades  218  win  15.1%  stationary  5.0%
+
+======================================================================================================================
+AVELLANEDA-LEE RESIDUAL MEAN-REVERSION  (60-day window, s in/out/stop = 2.0/0.5/3.5, 20d time stop)
+======================================================================================================================
+pair/tf                  trades    win%     ret%   maxDD%   RET/DD   trd/yr   HL days stationary   GATE
+XAUUSD/XAGUSD D1            124    9.7%   -64.7%   -64.7%     0.08      6.1       5.2       6.5%   fail
+US30/US500 D1               124    1.6%   -71.3%   -71.9%     0.08      5.7       5.8       4.1%   fail
+US500/US100 D1               69    2.9%   -50.4%   -50.5%     0.11      5.8       5.3       5.8%   fail
+US30/US100 D1                61   11.5%   -37.8%   -37.8%     0.10      5.1       5.7       4.3%   fail
+XAUUSD/XAGUSD H1            251   20.7%   -89.8%   -89.9%     0.26     29.7       5.1       7.3%   fail
+US30/US500 H1               388    8.8%   -97.3%   -97.3%     0.36     45.9       5.3       6.3%   fail
+US500/US100 H1              389   10.8%   -97.5%   -97.5%     0.36     46.0       4.5       6.0%   fail
+US30/US100 H1               218   15.1%   -84.3%   -84.5%     0.23     25.8       5.0       5.0%   fail
+
+--- stationarity of the cumulative residual (honest analogue of the cointegration check) ---
+pair/tf                     windows median ADF t   MC 5% crit A-L kappa filter
+XAUUSD/XAGUSD D1               5445        -1.43        -2.56          99.4%
+US30/US500 D1                  5540        -1.39        -2.56          98.3%
+US500/US100 D1                 2748        -1.41        -2.56          98.5%
+US30/US100 D1                  2750        -1.40        -2.56          96.8%
+XAUUSD/XAGUSD H1               2091        -1.48        -2.65         100.0%
+US30/US500 H1                  2114        -1.47        -2.65          96.9%
+US500/US100 H1                 1850        -1.54        -2.65          99.6%
+US30/US100 H1                  1849        -1.47        -2.65          97.5%
+  'A-L kappa filter' = %% of windows whose mean-reversion time is faster
+  than half the estimation window (Avellaneda-Lee's own tradability screen).
+
+--- exit reason mix ---
+  XAUUSD/XAGUSD D1         {'stop': 111, 'target': 13}
+  US30/US500 D1            {'stop': 122, 'target': 2}
+  US500/US100 D1           {'stop': 67, 'target': 2}
+  US30/US100 D1            {'stop': 54, 'target': 7}
+  XAUUSD/XAGUSD H1         {'stop': 194, 'target': 56, 'time': 1}
+  US30/US500 H1            {'stop': 352, 'target': 36}
+  US500/US100 H1           {'stop': 345, 'target': 43, 'time': 1}
+  US30/US100 H1            {'stop': 183, 'target': 35}
+
+======================================================================================================================
+GATE: win rate > 50%  AND  RETURN/DD > 1.5  AND  max DD < 10%
+======================================================================================================================
+configs passing all three: 0 of 8
+
+Descriptive backtest. Pessimistic intrabar (worst-case leg excursions,
+stop wins ties). Cost = two-leg round trip from a closed-market spread
+snapshot, so a lower bound on live cost.

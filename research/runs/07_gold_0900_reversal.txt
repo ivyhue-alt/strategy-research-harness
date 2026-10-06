@@ -1,0 +1,49 @@
+XAUUSD H1: 50000 bars  2018-01-14 23:00:00 -> 2026-07-30 00:00:00  (8.54 years)
+live half-spread now: 0.541 bps (using 0.55 bps)
+GMT-08:00 bars: 2182   strongly directional (body >= 50% of range): 888 (40.7%)
+  up-bars 457 / down-bars 431
+  rule is the SINGLE pre-committed definition - not tuned
+
+  ran stop 0.5x / tgt 1.0x, hold 1h
+  ran stop 0.5x / tgt 1.0x, hold 4h
+  ran stop 1.0x / tgt 1.0x, hold 1h
+  ran stop 1.0x / tgt 1.0x, hold 4h
+
+================================================================================================================
+09:00 GMT GOLD REVERSAL - RESULTS
+================================================================================================================
+variant                      trades    win%    exp R     ret%   maxDD%   RET/DD    trd/yr   GATE
+stop 0.5x / tgt 1.0x, hold 1h    888   42.8%   -0.108   -63.0%   -65.3%     0.17     104.0   fail
+stop 0.5x / tgt 1.0x, hold 4h    888   33.1%   -0.138   -72.8%   -75.2%     0.19     104.0   fail
+stop 1.0x / tgt 1.0x, hold 1h    888   46.7%   -0.049   -36.2%   -39.7%     0.13     104.0   fail
+stop 1.0x / tgt 1.0x, hold 4h    888   48.4%   -0.054   -40.3%   -46.6%     0.13     104.0   fail
+
+--- NULL CONTROL: 08:00 signs permuted, 200 runs (does DIRECTION inform?) ---
+variant                      real win% / null real expR / null       p(win)      p(expR)
+stop 0.5x / tgt 1.0x, hold 1h    42.8% /  41.8%   -0.108 / -0.110       0.285       0.440
+stop 0.5x / tgt 1.0x, hold 4h    33.1% /  33.3%   -0.138 / -0.132       0.575       0.555
+stop 1.0x / tgt 1.0x, hold 1h    46.7% /  45.7%   -0.049 / -0.047       0.280       0.545
+stop 1.0x / tgt 1.0x, hold 4h    48.4% /  48.1%   -0.054 / -0.055       0.460       0.475
+  p = fraction of permutations at least as good as the real result.
+  p > 0.05 means the real result is indistinguishable from random direction.
+
+--- SPLIT-HALF STABILITY ---
+variant                        first half win%/expR/n  second half win%/expR/n
+stop 0.5x / tgt 1.0x, hold 1h     43.1% / -0.113 / 445     42.4% / -0.102 / 443
+stop 0.5x / tgt 1.0x, hold 4h     29.9% / -0.220 / 445     36.3% / -0.055 / 443
+stop 1.0x / tgt 1.0x, hold 1h     46.5% / -0.058 / 445     47.0% / -0.040 / 443
+stop 1.0x / tgt 1.0x, hold 4h     45.6% / -0.097 / 445     51.2% / -0.011 / 443
+
+--- exit mix ---
+  stop 0.5x / tgt 1.0x, hold 1h {'time': 528, 'stop': 308, 'target': 52}
+  stop 0.5x / tgt 1.0x, hold 4h {'stop': 566, 'target': 219, 'time': 103}
+  stop 1.0x / tgt 1.0x, hold 1h {'time': 730, 'stop': 96, 'target': 62}
+  stop 1.0x / tgt 1.0x, hold 4h {'stop': 335, 'target': 304, 'time': 249}
+
+================================================================================================================
+GATE: win rate > 50%  AND  RETURN/DD > 1.5  AND  max DD < 10%
+================================================================================================================
+variants passing all three: 0 of 4
+
+4 variants tested (2 stop/target x 2 holds) - the specified grid, not a
+search. 09:00 only; no other hour examined. Threshold not tuned.
